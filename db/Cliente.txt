@@ -1,11 +1,2 @@
-Ruan,12,24
-Ray,24,12
-
-f = open("Cliente.txt", 'r')
-
-for linha in f:
-    nome, numero, cpf = linha.strip().split(',')
-    print(nome)
-    print(numero)
-    print(cpf)
-    
+Ruan,12,25,16
+Ray,13,26,17
