@@ -9,11 +9,5 @@ from estoque import Produto
 
 estoque = Estoque()
 
-pr1 = Produto("Melancia", 20, 27.99)
-pr2 = Produto("Maçã", 50, 14.98)
-
-estoque.add_produto(pr1)
-estoque.add_produto(pr2)
-
 estoque.exibir_estoque()
-
+estoque.add_produto()
