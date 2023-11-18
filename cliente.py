@@ -12,7 +12,7 @@ class Cliente:
         self.nome = input('Digite o nome do cliente: ')
         self.idade = int(input('Digite a idade do cliente: '))
         self.cpf = int(input('Digite o CPF do cliente: '))
-        self.numero_telefone = int(input('Digite o número de telefone'))
+        self.numero_telefone = int(input('Digite o número de telefone: '))
         resposta = input(f'Os dados do novo cliente são (digite SIM para confirmar e NAO para reiniciar): \nNome: {self.nome},\nIdade: {self.idade},\nCPF: {self.idade},\nNúmero de Telefone:  {self.numero_telefone} \n')
 
         if resposta == "SIM":
