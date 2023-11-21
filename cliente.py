@@ -15,14 +15,14 @@ class Cliente:
     
     def cadastrar():
         nome = input('Digite o nome do cliente: ')
-        idade = input('Digite a idade do cliente: ')
+        idade = int(input('Digite a idade do cliente: '))
         cpf = input('Digite o CPF do cliente: ')
         numero_telefone = input('Digite o número de telefone: ')
         resposta = input(f'Os dados do novo cliente são (digite SIM para confirmar e NAO para reiniciar): \nNome: {nome},\nIdade: {idade},\nCPF: {cpf},\nNúmero de Telefone:  {numero_telefone} \n')
 
         if resposta == "SIM":
             c = open(os.getenv("Cliente"), "a")
-            c.write("\n"+nome+","+idade+","+cpf+","+numero_telefone)
+            c.write("\n"+nome+","+str(idade)+","+cpf+","+numero_telefone)
             c.close()
             print("Cliente cadastrado!")
             
@@ -30,8 +30,10 @@ class Cliente:
             Cliente.cadastrar()
             
     def consulta():
+        realized = False
         lista = []
-        c = open(os.getenv("Cliente"), "r")
+        arquivo = open(os.getenv("Cliente"), "r")
+        c = arquivo.readlines()
         for i in c:
             cliente = i.replace("\n", "")
             lista.append(cliente)
@@ -41,59 +43,56 @@ class Cliente:
                 nome, idade, cpf, numero_telefone = i.split(",")
                 cliente = Cliente(nome=nome, idade=idade, cpf=cpf, numero_telefone=numero_telefone)
                 cliente.exibir()
-            else:
-                print("Dados incorretos!")
-                opcao = input("1 - Menu\t2 - Inserir dados novamente")
-                if opcao == 1: 
-                    break
-                else: 
-                    Cliente.consulta()
-        c.close()
+                realized = True
+        if realized != True:
+            print("Dados incorretos!")
+            opcao = input("1 - Inserir dados novamente\n")
+            if opcao == 1: Cliente.consulta()
+            realized 
+        arquivo.close()
         
     def deletar():
-        c = open(os.getenv("Cliente"), "r")
-        cpf_consulta = input('Digite o CPF do cliente para a consulta: ')
-        c = c.readlines()
+        realized = False
+        arquivo = open(os.getenv("Cliente"), "r")
+        cpf_consulta = input('Digite o CPF do cliente para deletar: ')
+        c = arquivo.readlines()
         for i in c:
             if(cpf_consulta == i.split(",")[2]):
                 c.remove(i)
                 w = open(os.getenv("Cliente"), "w")
                 w.writelines(c)
                 print("Cliente deletado!\n")
-            else:
-                print("Dados incorretos!")
-                opcao = input("1 - Menu\t2 - Inserir dados novamente")
-                if opcao == 1: 
-                    break
-                else: 
-                    Cliente.deletar()
-        w.close()        
+                realized = True
+        if realized != True:
+            print("Dados incorretos!")
+            opcao = input("1 - Inserir dados novamente\n")
+            if opcao == 1: Cliente.deletar()        
+        arquivo.close()
     
     def alterar():
-        c = open(os.getenv("Cliente"), "r")
-        cpf_consulta = input('Digite o CPF do cliente para a consulta: ')
-        c = c.readlines()
+        realized = False
+        arquivo = open(os.getenv("Cliente"), "r")
+        cpf_consulta = input('Digite o CPF do cliente para alterar: ')
+        c = arquivo.readlines()
         for i in c:
             if(cpf_consulta == i.split(",")[2]):
                 nome = input('Digite o nome do cliente: ')
-                idade = input('Digite a idade do cliente: ')
+                idade = int(input('Digite a idade do cliente: '))
                 numero_telefone = input('Digite o número de telefone: ')
                 resposta = input(f'Os dados do cliente são (digite SIM para confirmar e NAO para reiniciar): \nNome: {nome},\nIdade: {idade},\nCPF: {cpf_consulta},\nNúmero de Telefone:  {numero_telefone} \n')
                 if resposta == "SIM":
                     c.remove(i)
-                    alterado = nome+","+idade+","+cpf_consulta+","+numero_telefone
+                    alterado = "\n"+nome+","+str(idade)+","+cpf_consulta+","+numero_telefone
                     c.append(alterado)
                     w = open(os.getenv("Cliente"), "w")
                     w.writelines(c)
                     print("Cliente alterado!\n\n")
+                    realized = True
                 else:
                     Cliente.alterar()
                 
-            else:
-                print("Dados incorretos!")
-                opcao = input("1 - Menu\t2 - Inserir dados novamente")
-                if opcao == 1: 
-                    break
-                else: 
-                    Cliente.alterar()
-        w.close()        
+        if realized != True:
+            print("Dados incorretos!")
+            opcao = input("1 - Inserir dados novamente\n")
+            if opcao == 1: Cliente.alterar()     
+        arquivo.close()        
