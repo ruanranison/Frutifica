@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Um" title="#NextLevelWeek" src="frutifica.png" />
+    <img alt="Um" title="#NextLevelWeek" src="FRUTIFICA.png" />
 </h1>
 
 <h4 align="center"> 
