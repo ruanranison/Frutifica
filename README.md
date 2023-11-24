@@ -154,10 +154,6 @@ Aqui está um dos exemplos de cadeia de caracteres/string. Está presente no arq
         c = arquivo.readlines()
 ```
 
-<a>
-  <img src="arquivos.png">
-</a>
-
 Esses são os arquivos onde serão registrados os dados inseridos.
 
 
