@@ -7,7 +7,7 @@
 </h4>
 
 
-## 🍉 Sobre o projeto
+## 🍉 | Sobre o projeto
 
 O frutifica é resultado de uma solicitação feita pelo nosso professor de Lógica de Programação para que lidemos com problemas e soluções reais.
 
@@ -19,20 +19,19 @@ A nossa solução, basicamente, trata de resolver um problema base de qualquer e
 
 (Detalharemos em breve tais funcionalidades)
 
-Os usuários terão acesso ao aplicativo móvel, onde poderão:
-- navegar pelo mapa para ver as instituições cadastradas
-- entrar em contato com a entidade através do E-mail ou do WhatsApp
 
-Projeto desenvolvido durante a **NLW - Next Level Week** oferecida pela [Rocketseat](rs).
-O NLW é uma experiência online com muito conteúdo prático, desafios e hacks onde o conteúdo fica disponível durante uma semana.
+Como passado, o nosso público alvo direto são os funcionários e proprietários do Hortifruti e o público alvo indireto são os clientes desse ambiente. Logo, o uso do sistema será diretamente ligados os funcionários que vão usufruitor das funcionalidades.
+
+💻 | O projeto foi desenvolvido pelos estudantes, Ray Antoniel e Ruan Ranison.
+Ambos estudantes do 2º Semestre do curso de Sistemas de Informação do IFAL - Campus Arapiraca.
 
 
-## 🎨 Layout
+## Linguagem de programação
 
-O layout da aplicação está disponível no Figma:
+Toda a aplicação foi desenvolvida em Python
 
-<a href="https://www.figma.com/file/1SxgOMojOB2zYT0Mdk28lB/Ecoleta?node-id=136%3A546">
-  <img alt="Made by tgmarinho" src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
+<a>
+  <img src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
 </a>
 
 
