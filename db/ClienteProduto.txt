@@ -2,3 +2,10 @@
 25,maracuja,3.0,fruta,5
 25,maracuja,3.0,fruta,1
 25,maracuja,3.0,fruta,1
+25,abacaxi,5.0,fruta,1
+25,abacaxi,5.0,fruta,1
+25,abacaxi,5.0,fruta,1
+25,abacaxi,5.0,fruta,1
+25,abacaxi,5.0,fruta,1
+25,abacaxi,5.0,fruta,1
+25,abacaxi,5.0,fruta,1

@@ -1,5 +1,2 @@
-abacaxi,20,5.0,fruta
-
-
-
-maracuja,3,3.0,fruta
+maracuja,3,3.0,fruta,20
+abacaxi,13,5.0,fruta,40

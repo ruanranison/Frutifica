@@ -1,10 +1,9 @@
-import os
-from dotenv import load_dotenv
 from Cliente import Cliente
 from EstoqueProduto import EstoqueProduto
 from Caixa import Caixa
+from ClienteProduto import ClienteProduto
+from decouple import config
 
-load_dotenv()
 class Main():
     def menu():
         print("\t\t  Menu\n")
@@ -12,13 +11,12 @@ class Main():
         while opcao != 5:
             if opcao == 1:
                 print("\n\n\t\t\t  Estoque\n")
-                opcaoe = int(input("1 - Cadastrar produto\t\t\t2 - Consultar por nome\n3 - Alterar produto\t\t\t4 - Deletar produto\n5 - Venda\t\t\t\t6 - Voltar\n\n"))
+                opcaoe = int(input("1 - Cadastrar produto\t\t\t2 - Consultar por nome\n3 - Alterar produto\t\t\t4 - Deletar produto\n\t\t\t5 - Voltar\n\n"))
                 if opcaoe == 1: EstoqueProduto.cadastrar()
                 elif opcaoe == 2: EstoqueProduto.consulta()
                 elif opcaoe == 3: EstoqueProduto.alterar()
                 elif opcaoe == 4: EstoqueProduto.deletar()
-                elif opcaoe == 5: EstoqueProduto.venda()
-                elif opcaoe == 6: Main.menu()
+                elif opcaoe == 5: Main.menu()
                 else: break
             elif opcao == 2:
                 print("\n\n\t\t\t  Cliente\n")
@@ -30,18 +28,27 @@ class Main():
                 elif opcaoc == 5: Main.menu()
                 else: break
             elif opcao == 3:
-                print("\n\n\t\t\t  Caixa\n")
-                Caixa.exibir
-                break
+                print("\n\n\t\t  Caixa \n")
+                opcaocaixa = int(input("1 - Caixa\t\t\t2 - Venda\n\t\t3 - Voltar\n\n"))
+                if opcaocaixa == 1: Caixa.exibir()
+                elif opcaocaixa == 2: Caixa.venda()
+                elif opcaocaixa == 3: Main.menu()
+                else: break
             elif opcao == 4:
-                # menu relatorios
-                break
+                print("\n\n\t\t\t  Relatórios\n")
+                opcaor = int(input("1 - Produtos mais vendidos\t\t2 - Melhores compradores\n\t\t\t  3 - Voltar\n\n"))
+                if opcaor == 1: EstoqueProduto.maisVendido()
+                elif opcaor == 2: Cliente.melhorComprador()
+                elif opcaor == 3: Main.menu()
+                else: break
+                
     def main():
         print("\n\n\t\tFRUTIFICA\n\n")
+        
         login = input("Login: ")
         senha = input("Senha: ")
-
-        if(login == os.getenv("ADMIN") and senha == os.getenv("SENHA")):
+        
+        if(login == config("ADMIN") and senha == config("SENHA")):
             print("Usuário logado!\n\n\n")
             Main.menu()
         else:
