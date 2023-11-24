@@ -1,4 +1,5 @@
-from decouple import config
+import os
+from dotenv import load_dotenv
 from ClienteProduto import ClienteProduto
 from cliente import Cliente
 
@@ -7,22 +8,22 @@ class Caixa:
         self.caixa = caixa
 
     def exibir():
-        arquivo = open(config("Caixa"), "r")
+        arquivo = open(os.getenv("Caixa"), "r")
         c = arquivo.readline()
         print(f"Caixa: R${c}\n\n")
         
     def adicionar(valor):
-        arquivo = open(config("Caixa"), "r")
+        arquivo = open(os.getenv("Caixa"), "r")
         c = float(arquivo.readline())
         c = float(valor) + c
-        w = open(config("Caixa"), "w")
+        w = open(os.getenv("Caixa"), "w")
         w.write(str(c)) 
         arquivo.close()
         print("\nAdicionado ao caixa!")
         
     def venda():
         realized = False
-        arquivo = open(config("EstoqueProduto"), "r")
+        arquivo = open(os.getenv("EstoqueProduto"), "r")
         c = arquivo.readlines()
         produto_venda = input('Digite o nome do produto para a venda: ')
         for i in c:
@@ -32,7 +33,7 @@ class Caixa:
                 quantidade_venda = int(input('Digite a quantidade do produto para a venda: '))
                 if quantidade_venda <= quantidade:
                     listaj = []
-                    arquivoj = open(config("Cliente"), "r")
+                    arquivoj = open(os.getenv("Cliente"), "r")
                     cj = arquivoj.readlines()
                     for j in cj:
                         cliente = j.replace("\n", "")
@@ -47,7 +48,7 @@ class Caixa:
                                 alterado = "\n"+nome_produto+","+str((quantidade-quantidade_venda))+","+preco+","+tipo
                                 c.append(alterado)
                                 c.remove(i)
-                                w = open(config("EstoqueProduto"), "w")
+                                w = open(os.getenv("EstoqueProduto"), "w")
                                 w.writelines(c)
                                 cp = ClienteProduto(cpf_cliente=cpf, nome_produto=nome_produto, preco_produto=preco, tipo_produto=tipo, quantidade_venda=quantidade_venda)
                                 cp.venda()
