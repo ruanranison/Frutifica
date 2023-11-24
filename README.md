@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Um" title="#NextLevelWeek" src="FRUTIFICA.png" />
+    <img src="FRUTIFICA.png" />
 </h1>
 
 <h4 align="center"> 
@@ -31,7 +31,7 @@ Ambos estudantes do 2º Semestre do curso de Sistemas de Informação do IFAL - 
 Toda a aplicação foi desenvolvida em Python
 
 <a>
-  <img src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
+  <img src="Python-Logo">
 </a>
 
 
