@@ -1,5 +1,5 @@
 import os
-from dotenv import load_dotenv
+from decouple import config
 
 class ClienteProduto:
     def __init__(self, cpf_cliente, nome_produto, preco_produto, tipo_produto, quantidade_venda):
@@ -13,6 +13,6 @@ class ClienteProduto:
         print(f"\nCPF do Cliente: {self.cpf_cliente}\nNome do Produto: {self.nome_produto}\nPreço: {self.preco_produto}\tTipo: {self.tipo_produto}\n\t\tQuantidade da venda: {self.quantidade_venda}\n\n")
     
     def venda(self):
-        c = open(os.getenv("ClienteProduto"), "a")
+        c = open(config("ClienteProduto"), "a")
         c.write("\n"+self.cpf_cliente+","+self.nome_produto+","+str(self.preco_produto)+","+self.tipo_produto+","+str(self.quantidade_venda))
         c.close()

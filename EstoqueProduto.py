@@ -1,5 +1,5 @@
 import os
-from dotenv import load_dotenv
+from decouple import config
 #from decouple import config
 
 class EstoqueProduto:
@@ -21,7 +21,7 @@ class EstoqueProduto:
         resposta = input(f'Para confirmar os dados, digite SIM, para REINICIAR, digite NAO \nNome: {nome} \nQuantidade: {quantidade} \nPreço: R${preco} \nTipo: {tipo}\n')
             
         if resposta == 'SIM':
-            c = open(os.getenv("EstoqueProduto"), "a")
+            c = open(config("EstoqueProduto"), "a")
             c.write("\n"+nome+","+str(quantidade)+","+str(preco)+","+tipo+",0")
             c.close()
             print("Produto cadastrado!")
@@ -31,7 +31,7 @@ class EstoqueProduto:
     def consulta():
         realized = False
         lista = []
-        arquivo = open(os.getenv("EstoqueProduto"), "r")
+        arquivo = open(config("EstoqueProduto"), "r")
         c = arquivo.readlines()
         for i in c:
             cliente = i.replace("\n", "")
@@ -51,13 +51,13 @@ class EstoqueProduto:
             
     def deletar():
         realized = False
-        arquivo = open(os.getenv("EstoqueProduto"), "r")
+        arquivo = open(config("EstoqueProduto"), "r")
         c = arquivo.readlines()
         nome_consulta = input('Digite o nome do produto para deletar: ')
         for i in c:
             if(nome_consulta == i.split(",")[0]):
                 c.remove(i)
-                w = open(os.getenv("EstoqueProduto"), "w")
+                w = open(config("EstoqueProduto"), "w")
                 w.writelines(c)
                 print("Produto deletado!\n")
                 realized = True
@@ -69,7 +69,7 @@ class EstoqueProduto:
     
     def alterar():
         realized = False
-        arquivo = open(os.getenv("EstoqueProduto"), "r")
+        arquivo = open(config("EstoqueProduto"), "r")
         c = arquivo.readlines()
         nome_consulta = input('Digite o nome do produto para alterar: ')
         for i in c:
@@ -84,7 +84,7 @@ class EstoqueProduto:
                     alterado = "\n"+nome+","+str(quantidade)+","+str(preco)+","+tipo+","+pontos
                     c.append(alterado)
                     c.remove(i)
-                    w = open(os.getenv("EstoqueProduto"), "w")
+                    w = open(config("EstoqueProduto"), "w")
                     w.writelines(c)
                     print("Produto alterado!\n\n")
                     realized = True
@@ -99,7 +99,7 @@ class EstoqueProduto:
     
     def maisVendido():
         maisVendido = []
-        arquivo = open(os.getenv("EstoqueProduto"), "r")
+        arquivo = open(config("EstoqueProduto"), "r")
         c = arquivo.readlines()
         maisVendido = sorted(c, key=lambda x: x.split(",")[4], reverse=True)
         arquivo.close()

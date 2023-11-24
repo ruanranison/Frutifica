@@ -1,5 +1,4 @@
-import os
-from dotenv import load_dotenv
+from decouple import config
 
 class Cliente:
     def __init__ (self, nome, idade, cpf, numero_telefone, pontos):
@@ -20,7 +19,7 @@ class Cliente:
         resposta = input(f'Os dados do novo cliente são (digite SIM para confirmar e NAO para reiniciar): \nNome: {nome},\nIdade: {idade},\nCPF: {cpf},\nNúmero de Telefone:  {numero_telefone} \n')
 
         if resposta == "SIM":
-            c = open(os.getenv("Cliente"), "a")
+            c = open(config("Cliente"), "a")
             c.write("\n"+nome+","+str(idade)+","+cpf+","+numero_telefone+",0")
             c.close()
             print("Cliente cadastrado!")
@@ -31,7 +30,7 @@ class Cliente:
     def consulta():
         realized = False
         lista = []
-        arquivo = open(os.getenv("Cliente"), "r")
+        arquivo = open(config("Cliente"), "r")
         c = arquivo.readlines()
         for i in c:
             cliente = i.replace("\n", "")
@@ -52,13 +51,13 @@ class Cliente:
         
     def deletar():
         realized = False
-        arquivo = open(os.getenv("Cliente"), "r")
+        arquivo = open(config("Cliente"), "r")
         cpf_consulta = input('Digite o CPF do cliente para deletar: ')
         c = arquivo.readlines()
         for i in c:
             if(cpf_consulta == i.split(",")[2]):
                 c.remove(i)
-                w = open(os.getenv("Cliente"), "w")
+                w = open(config("Cliente"), "w")
                 w.writelines(c)
                 print("Cliente deletado!\n")
                 realized = True
@@ -70,7 +69,7 @@ class Cliente:
     
     def alterar():
         realized = False
-        arquivo = open(os.getenv("Cliente"), "r")
+        arquivo = open(config("Cliente"), "r")
         cpf_consulta = input('Digite o CPF do cliente para alterar: ')
         c = arquivo.readlines()
         for i in c:
@@ -84,7 +83,7 @@ class Cliente:
                     c.remove(i)
                     alterado = "\n"+nome+","+str(idade)+","+cpf_consulta+","+numero_telefone+","+pontos
                     c.append(alterado)
-                    w = open(os.getenv("Cliente"), "w")
+                    w = open(config("Cliente"), "w")
                     w.writelines(c)
                     print("Cliente alterado!\n\n")
                     realized = True
@@ -99,7 +98,7 @@ class Cliente:
         
     def pontuacao(cpf_consulta, valor):
         valor = int(valor)
-        arquivo = open(os.getenv("Cliente"), "r")
+        arquivo = open(config("Cliente"), "r")
         c = arquivo.readlines()
         for i in c:
             if(cpf_consulta == i.split(",")[2]):
@@ -108,10 +107,10 @@ class Cliente:
                 c.remove(i)
                 alterado = "\n"+nome+","+str(idade)+","+cpf+","+numero_telefone+","+str(pontos)
                 c.append(alterado)
-                w = open(os.getenv("Cliente"), "w")
+                w = open(config("Cliente"), "w")
                 w.writelines(c)   
         
-        arquivo = open(os.getenv("EstoqueProduto"), "r")
+        arquivo = open(config("EstoqueProduto"), "r")
         c = arquivo.readlines()
         for i in c:
             if(cpf_consulta == i.split(",")[2]):
@@ -120,13 +119,13 @@ class Cliente:
                 c.remove(i)
                 alterado = "\n"+nome+","+str(idade)+","+cpf+","+numero_telefone+","+str(pontos)
                 c.append(alterado)
-                w = open(os.getenv("EstoqueProduto"), "w")
+                w = open(config("EstoqueProduto"), "w")
                 w.writelines(c)   
         arquivo.close()
         
     def melhorComprador():
         melhorComprador = []
-        arquivo = open(os.getenv("Cliente"), "r")
+        arquivo = open(config("Cliente"), "r")
         c = arquivo.readlines()
         melhorComprador = sorted(c, key=lambda x: x.split(",")[4], reverse=True)
         arquivo.close()
