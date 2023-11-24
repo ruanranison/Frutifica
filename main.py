@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 import os
 from dotenv import load_dotenv
 from cliente import Cliente
-=======
-from Cliente import Cliente
->>>>>>> e01999f8b2050bcbf8a95a0a587a450a4b847462
+from cliente import Cliente
 from EstoqueProduto import EstoqueProduto
 from Caixa import Caixa
 from decouple import config
