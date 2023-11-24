@@ -81,7 +81,16 @@ for j in cj:
 
 Assim como outros laços de repetição, esses são bem frequentes. Acima contém um exemplo presente no arquivo "Caixa.py".
 
-**subprogramas**
+**Subprogramas**
+
+**Arquivos**
+
+<a>
+  <img src="arquivos.png">
+</a>
+
+Esses são os arquivos onde serão registrados os dados inseridos.
+
 
 ## 🧾 | Aqui estão os Requisitos não-funcionais da aplicação:
 
@@ -93,7 +102,7 @@ Assim como outros laços de repetição, esses são bem frequentes. Acima conté
 - **Requisitos Externos**
   	- A preservação de dados dos clientes está fixa na empresa, pois não lidaremos com a internet na aplicação e o único acesso será condicionado à chave de acesso do administrador.
 
-## ⛲ | Fontes e Contatos
+## ⛲ | Contatos
 
 [Mestres da Web]: [https://nodejs.org/](https://www.mestresdaweb.com.br/tecnologias/requisitos-funcionais-e-nao-funcionais-o-que-sao)
 [Logo de Python]: [https://www.typescriptlang.org/](https://logosmarcas.net/python-logo/)
