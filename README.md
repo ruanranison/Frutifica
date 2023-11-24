@@ -50,8 +50,15 @@ Toda a aplicação foi desenvolvida em Python
   	- Basicamente, os estabelecimento que usamos como base utilizava apenas papel para os seus seistemas de informação, sejam eles: estoque, caixa ou até a caderneta com os clientes pendentes. Dessa forma, precisaríamos de uma implementação geral no negócio.
   	
 - Quais foram os objetivos traçados para o seu projeto?
+  	- Praticidade das relações no estabelecimento
+  	- Automatização das atividades
+  
 - Quais os requisitos desenvolvidos para o seu projeto?
+  	- Os requisistos funcionais, foram: Caixa (cuidando da parte de vendas), Seguimento de Clientes (Registro e fidelização dos clientes), Estoque (controle, consulta e manutenção dos produtos em reserva) e Relatórios (informativos relacionados às interações, de modo geral)
+  	  
 - O que foi atendido pelo seu projeto?
+  	- Foram atendidas as demandas de um Hortifruti de pequeno porte. Ou seja, as questões que se relacionam com o dia-a-dia do estabelecimento.
+  	  
 - Quais e onde foram utilizadas as estruturas no código?
 
 **if/else ou swicth/elif**
@@ -82,8 +89,70 @@ for j in cj:
 Assim como outros laços de repetição, esses são bem frequentes. Acima contém um exemplo presente no arquivo "Caixa.py".
 
 **Subprogramas**
+```bash
+def main():
+        LOGIN={"login":"configistrador","senha":"config123"}
+        print("\n\n\t\tFRUTIFICA\n\n")
+        
+        login = input("Login: ")
+        senha = input("Senha: ")
+        
+        if(login == LOGIN['login'] and senha == LOGIN['senha']):
+            print("Usuário logado!\n\n\n")
+            Main.menu()
+        else:
+            print("Usuário e/ou senha incorreta!")
+            Main.main()
+```
+
+Um subprograma é o login como administrador do programa. Está presente em "main.py".
+
+**matrizes/listas**
+
+```bash
+lista config
+        arquivo = open(config("EstoqueProduto"), "r")
+        c = arquivo.readlines()
+```
+
+Aqui está um dos exemplos de listas no nosso projeto. Presente no arquivo "EstoqueProduto.py"
+
+**Estruturas**
+
+```bash
+
+25,maracuja,3.0,fruta,5
+25,maracuja,3.0,fruta,1
+25,maracuja,3.0,fruta,1
+25,abacaxi,5.0,fruta,1
+25,abacaxi,5.0,fruta,1
+25,abacaxi,5.0,fruta,1
+25,abacaxi,5.0,fruta,1
+25,abacaxi,5.0,fruta,1
+25,abacaxi,5.0,fruta,1
+25,abacaxi,5.0,fruta,1
+
+```
+
+Aqui está um dos exemplos de estrutura. Presente no arquivo "ClienteProduto.txt".
+
+**cadeia de caracteres/string**
+```bash
+def cadastrar():
+        nome = input('Digite o nome do produto: ')
+        quantidade = int(input('Digite a quantidade do produto: '))
+        preco = float(input('Digite o valor do produto: R$ '))
+        tipo = input('Digite o tipo do produto: ')
+```
+
+Aqui está um dos exemplos de cadeia de caracteres/string. Está presente no arquivo "EstoqueProduto.py"
+
 
 **Arquivos**
+
+```
+        c = arquivo.readlines()
+```
 
 <a>
   <img src="arquivos.png">
