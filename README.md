@@ -7,21 +7,17 @@
 </h4>
 
 
-## 💻 Sobre o projeto
+## 🍉 Sobre o projeto
 
-♻️ Ecoleta - é uma forma de conectar empresas e entidades de coleta de resíduos orgânicos e inorgânicos as pessoas que precisam descartar seus resíduos de maneira ecológica.
+O frutifica é resultado de uma solicitação feita pelo nosso professor de Lógica de Programação para que lidemos com problemas e soluções reais.
 
-As empresas ou entidades poderão se cadastrar na plataforma web enviando:
-- uma imagem do ponto de coleta
-- nome da entidade, email e whatsapp
-- e o endereço para que ele possa aparecer no mapa
-- além de selecionar um ou mais ítens de coleta: 
-  - lâmpadas
-  - pilhas e baterias
-  - papéis e papelão
-  - resíduos eletrônicos
-  - resíduos orgânicos
-  - óleo de cozinha
+A nossa solução, basicamente, trata de resolver um problema base de qualquer estabelecimento que não tenha acompanhado a "revolução tecnológica". Utilizamos como inspiração um Hortifruti da Zona Rural de Limoeiro de Anadia para entendermos a realidade de um negócio sem a automatização das suas interações, aqui abaixo estão alguns dos requisitos funcionais contidos no nosso projeto:
+- Caixa (para controle de recebimentos)
+- Seguimento de Clientes (para fidelizar os fregueses na compra)
+- Estoque (evitando excessos e faltas de mercadoria)
+- Relatórios (para monitorar de forma automatizada)
+
+(Detalharemos em breve tais funcionalidades)
 
 Os usuários terão acesso ao aplicativo móvel, onde poderão:
 - navegar pelo mapa para ver as instituições cadastradas
