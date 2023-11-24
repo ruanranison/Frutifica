@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 from cliente import Cliente
-from cliente import Cliente
 from EstoqueProduto import EstoqueProduto
 from Caixa import Caixa
 from decouple import config

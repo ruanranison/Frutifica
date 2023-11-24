@@ -1,6 +1,6 @@
 from decouple import config
 from ClienteProduto import ClienteProduto
-from Cliente import Cliente
+from cliente import Cliente
 
 class Caixa:
     def __init__ (self, caixa):
