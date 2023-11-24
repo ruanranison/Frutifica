@@ -198,21 +198,9 @@ class Cliente:
 Esta é a nossa funcionalidade de Clientes, possibilita o cadastro, a exibição, a exclusão e a alteração dos dados dos clientes na plataforma.
 
 
-## 📝 Licença
+## ⛲ Fontes e Contatos
 
-Este projeto esta sobe a licença MIT.
+[Mestres da Web]: [https://nodejs.org/](https://www.mestresdaweb.com.br/tecnologias/requisitos-funcionais-e-nao-funcionais-o-que-sao)
+[Logo de Python]: [https://www.typescriptlang.org/](https://logosmarcas.net/python-logo/)
 
-Feito com ❤️ por Thiago Marinho 👋🏽 [Entre em contato!](https://www.linkedin.com/in/tgmarinho/)
-
-[nodejs]: https://nodejs.org/
-[typescript]: https://www.typescriptlang.org/
-[expo]: https://expo.io/
-[reactjs]: https://reactjs.org
-[rn]: https://facebook.github.io/react-native/
-[yarn]: https://yarnpkg.com/
-[vscode]: https://code.visualstudio.com/
-[vceditconfig]: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
-[license]: https://opensource.org/licenses/MIT
-[vceslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
-[prettier]: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
-[rs]: https://rocketseat.com.br
+Feito por Ray Antoniel (rass3@aluno.ifal.edu.br) e Ruan Ranison (rrcs1@aluno.ifal.edu.br)
