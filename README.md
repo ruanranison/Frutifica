@@ -12,12 +12,22 @@
 O frutifica é resultado de uma solicitação feita pelo nosso professor de Lógica de Programação para que lidemos com problemas e soluções reais.
 
 A nossa solução, basicamente, trata de resolver um problema base de qualquer estabelecimento que não tenha acompanhado a "revolução tecnológica". Utilizamos como inspiração um Hortifruti da Zona Rural de Limoeiro de Anadia para entendermos a realidade de um negócio sem a automatização das suas interações, aqui abaixo estão alguns dos requisitos funcionais contidos no nosso projeto:
-- Caixa (para controle de recebimentos)
-- Seguimento de Clientes (para fidelizar os fregueses na compra)
-- Estoque (evitando excessos e faltas de mercadoria)
-- Relatórios (para monitorar de forma automatizada)
-
-(Detalharemos em breve tais funcionalidades)
+- Caixa
+  	- Para controle de recebimentos
+  	- Possibilita a "abertura" e "fechamento" de caixa
+  	- Incuída a parte de vendar e emissão de notas
+  	- Registro dos clientes em compras
+- Seguimento de Clientes 
+  	- Para fidelizar os clientes no estabelecimento
+  	- Clientes inseridos no banco de dados da empresa
+  	- Cumulação de pontos para compras realizadas
+- Estoque 
+  	- Possibilita o controle das mercadorias
+  	- Impede que os produtos venham a perecer
+  	- Impede que seja o estoque seja zerado
+- Relatórios
+  	- Relatórios sobre todos os setores
+  	- Exemplos: Cliente mais assíduo e produto mais vendido estarão nos relatórios
 
 
 Como passado, o nosso público alvo direto são os funcionários e proprietários do Hortifruti e o público alvo indireto são os clientes desse ambiente. Logo, o uso do sistema será diretamente ligados os funcionários que vão usufruitor das funcionalidades.
@@ -31,105 +41,161 @@ Ambos estudantes do 2º Semestre do curso de Sistemas de Informação do IFAL - 
 Toda a aplicação foi desenvolvida em Python
 
 <a>
-  <img src="Python-Logo">
+  <img src="Python-Logo.png">
 </a>
 
 
-### Mobile
-
-<p align="center">
-  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./assets/home-mobile.png" width="200px">
-
-  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./assets/detalhes-mobile.svg" width="200px">
-</p>
-
-### Web
-
-<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./assets/web.svg" width="400px">
-
-  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./assets/sucesso-web.svg" width="400px">
-</p>
-
-## 🛠 Tecnologias
-
-As seguintes ferramentas foram usadas na construção do projeto:
-
-- [Expo][expo]
-- [Node.js][nodejs]
-- [React][reactjs]
-- [React Native][rn]
-- [TypeScript][typescript]
+## 🧾 Aqui estão os Requisitos não-funcionais da aplicação:
 
 
-## 🚀 Como executar o projeto
+- **Requisitos de Produto Final**
+  	- Dentro desses requisitos, cumprimos com a **confiabilidade** e a **consistência**. Haja vista que, por ser um sistema de pequena escala, não são levadas em consideração algumas modalidades, como: latência, tempo de execução e até portabilidade. O nosso sistema funciona bem na parte de confiabilidade por assegurar as necessidades do estabelecimento e é consistente por atender as demandas.
+- **Requisitos Organizacionais**
+  	- O software é compatível com as máquinas do Hortiifruti e a linguagem de programação utilizada (Python) funciona muito bem para a ideia.
+- **Requisitos Externos**
+  	- A preservação de dados dos clientes está fixa na empresa, pois não lidaremos com a internet na aplicação e o único acesso será condicionado à chave de acesso do administrador.
 
-Podemos considerar este projeto como sendo divido em três partes:
-1. Back End (pasta server) 
-2. Front End (pasta web)
-3. Mobile (pasta mobile)
 
-💡Tanto o Front End quanto o Mobile precisam que o Back End esteja sendo executado para funcionar.
-
-### Pré-requisitos
-
-Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js][nodejs]. 
-Além disto é bom ter um editor para trabalhar com o código como [VSCode][vscode]
-
-### 🎲 Rodando o Back End (servidor)
+## 👨‍💻 Aqui está um exemplo de funcionalidade:
 
 ```bash
-# Clone este repositório
-$ git clone https://github.com/tgmarinho/nlw1
+from decouple import config
 
-# Acesse a pasta do projeto no terminal/cmd
-$ cd nlw1
+class Cliente:
+    def __init__ (self, nome, idade, cpf, numero_telefone, pontos):
+        self.nome = nome
+        self.idade = idade
+        self.cpf = cpf
+        self.numero_telefone = numero_telefone
+        self.pontos = pontos
 
-# Vá para a pasta server
-$ cd server
+    def exibir(self):
+        print(f"\nNome: {self.nome}\tIdade: {self.idade}\nCPF: {self.cpf}\t\tNúmero de Telefone: {self.numero_telefone}\n\n")
+    
+    def cadastrar():
+        nome = input('Digite o nome do cliente: ')
+        idade = int(input('Digite a idade do cliente: '))
+        cpf = input('Digite o CPF do cliente: ')
+        numero_telefone = input('Digite o número de telefone: ')
+        resposta = input(f'Os dados do novo cliente são (digite SIM para confirmar e NAO para reiniciar): \nNome: {nome},\nIdade: {idade},\nCPF: {cpf},\nNúmero de Telefone:  {numero_telefone} \n')
 
-# Instale as dependências
-$ npm install
-
-# Execute a aplicação em modo de desenvolvimento
-$ npm run dev:server
-
-# O servidor inciará na porta:3333 - acesse http://localhost:3333 
+        if resposta == "SIM":
+            c = open(config("Cliente"), "a")
+            c.write("\n"+nome+","+str(idade)+","+cpf+","+numero_telefone+",0")
+            c.close()
+            print("Cliente cadastrado!")
+            
+        else:
+            Cliente.cadastrar()
+            
+    def consulta():
+        realized = False
+        lista = []
+        arquivo = open(config("Cliente"), "r")
+        c = arquivo.readlines()
+        for i in c:
+            cliente = i.replace("\n", "")
+            lista.append(cliente)
+        cpf_consulta = input('Digite o CPF do cliente para a consulta: ')
+        for i in lista:
+            if(cpf_consulta == i.split(",")[2]):
+                nome, idade, cpf, numero_telefone, pontos = i.split(",")
+                cliente = Cliente(nome=nome, idade=idade, cpf=cpf, numero_telefone=numero_telefone, pontos=pontos)
+                cliente.exibir()
+                realized = True
+        if realized != True:
+            print("Dados incorretos!")
+            opcao = input("1 - Inserir dados novamente\n")
+            if opcao == 1: Cliente.consulta()
+            realized 
+        arquivo.close()
+        
+    def deletar():
+        realized = False
+        arquivo = open(config("Cliente"), "r")
+        cpf_consulta = input('Digite o CPF do cliente para deletar: ')
+        c = arquivo.readlines()
+        for i in c:
+            if(cpf_consulta == i.split(",")[2]):
+                c.remove(i)
+                w = open(config("Cliente"), "w")
+                w.writelines(c)
+                print("Cliente deletado!\n")
+                realized = True
+        if realized != True:
+            print("Dados incorretos!")
+            opcao = input("1 - Inserir dados novamente\n")
+            if opcao == 1: Cliente.deletar()        
+        arquivo.close()
+    
+    def alterar():
+        realized = False
+        arquivo = open(config("Cliente"), "r")
+        cpf_consulta = input('Digite o CPF do cliente para alterar: ')
+        c = arquivo.readlines()
+        for i in c:
+            if(cpf_consulta == i.split(",")[2]):
+                nome = input('Digite o nome do cliente: ')
+                idade = int(input('Digite a idade do cliente: '))
+                numero_telefone = input('Digite o número de telefone: ')
+                pontos = i.split(",")[4]
+                resposta = input(f'Os dados do cliente são (digite SIM para confirmar e NAO para reiniciar): \nNome: {nome},\nIdade: {idade},\nCPF: {cpf_consulta},\nNúmero de Telefone:  {numero_telefone} \n')
+                if resposta == "SIM":
+                    c.remove(i)
+                    alterado = "\n"+nome+","+str(idade)+","+cpf_consulta+","+numero_telefone+","+pontos
+                    c.append(alterado)
+                    w = open(config("Cliente"), "w")
+                    w.writelines(c)
+                    print("Cliente alterado!\n\n")
+                    realized = True
+                else:
+                    Cliente.alterar()
+                
+        if realized != True:
+            print("Dados incorretos!")
+            opcao = input("1 - Inserir dados novamente\n")
+            if opcao == 1: Cliente.alterar()     
+        arquivo.close()        
+        
+    def pontuacao(cpf_consulta, valor):
+        valor = int(valor)
+        arquivo = open(config("Cliente"), "r")
+        c = arquivo.readlines()
+        for i in c:
+            if(cpf_consulta == i.split(",")[2]):
+                nome, idade, cpf, numero_telefone, pontos = i.split(",")
+                pontos = int(pontos) + (valor * 5)
+                c.remove(i)
+                alterado = "\n"+nome+","+str(idade)+","+cpf+","+numero_telefone+","+str(pontos)
+                c.append(alterado)
+                w = open(config("Cliente"), "w")
+                w.writelines(c)   
+        
+        arquivo = open(config("EstoqueProduto"), "r")
+        c = arquivo.readlines()
+        for i in c:
+            if(cpf_consulta == i.split(",")[2]):
+                nome, quantidade, preco, tipo, pontos = i.split(",")
+                pontos = int(pontos) + (valor * 5)
+                c.remove(i)
+                alterado = "\n"+nome+","+str(idade)+","+cpf+","+numero_telefone+","+str(pontos)
+                c.append(alterado)
+                w = open(config("EstoqueProduto"), "w")
+                w.writelines(c)   
+        arquivo.close()
+        
+    def melhorComprador():
+        melhorComprador = []
+        arquivo = open(config("Cliente"), "r")
+        c = arquivo.readlines()
+        melhorComprador = sorted(c, key=lambda x: x.split(",")[4], reverse=True)
+        arquivo.close()
+        print("\n\n\t\t\t  Melhores compradores\n")
+        for index, i in enumerate(melhorComprador):
+            print(str(index + 1)+"º - "+i.split(",")[0])
+        print("\n\n")
 ```
-
-### 🧭 Rodando a aplicação web (Front End)
-
-```bash
-# Clone este repositório
-$ git clone https://github.com/tgmarinho/nlw1
-
-# Acesse a pasta do projeto no seu terminal/cmd
-$ cd nlw1
-
-# Vá para a pasta da aplicação Front End
-$ cd web
-
-# Instale as dependências
-$ npm install
-
-# Execute a aplicação em modo de desenvolvimento
-$ npm run start
-
-# A aplicação será aberta na porta:3000 - acesse http://localhost:3000
-```
-
-### 📱Rodando a aplicação mobile 
-
-🚧 Em construção... 🚧
-
-## 😯 Como contribuir para o projeto
-
-1. Faça um **fork** do projeto.
-2. Crie uma nova branch com as suas alterações: `git checkout -b my-feature`
-3. Salve as alterações e crie uma mensagem de commit contando o que você fez: `git commit -m "feature: My new feature"`
-4. Envie as suas alterações: `git push origin my-feature`
-> Caso tenha alguma dúvida confira este [guia de como contribuir no GitHub](https://github.com/firstcontributions/first-contributions)
+Esta é a nossa funcionalidade de Clientes, possibilita o cadastro, a exibição, a exclusão e a alteração dos dados dos clientes na plataforma.
 
 
 ## 📝 Licença
