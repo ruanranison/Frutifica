@@ -44,8 +44,46 @@ Toda a aplicação foi desenvolvida em Python
   <img src="Python-Logo.png">
 </a>
 
+## ⁉️ | Perguntas e Respostas:
 
-## 🧾 Aqui estão os Requisitos não-funcionais da aplicação:
+- Quais foram as demandas encontradas no estabelecimento para o projeto?
+  	- Basicamente, os estabelecimento que usamos como base utilizava apenas papel para os seus seistemas de informação, sejam eles: estoque, caixa ou até a caderneta com os clientes pendentes. Dessa forma, precisaríamos de uma implementação geral no negócio.
+  	
+- Quais foram os objetivos traçados para o seu projeto?
+- Quais os requisitos desenvolvidos para o seu projeto?
+- O que foi atendido pelo seu projeto?
+- Quais e onde foram utilizadas as estruturas no código?
+
+**if/else ou swicth/elif**
+
+```bash
+if resposta == "SIM":
+            c = open(config("Cliente"), "a")
+            c.write("\n"+nome+","+str(idade)+","+cpf+","+numero_telefone+",0")
+            c.close()
+            print("Cliente cadastrado!")
+```
+
+Existem diversos exemplos no decorrer do código. Esse foi extraído do arquivo "cliente.py"
+
+**while/do..while e/ou for**
+
+```bash
+for j in cj:
+                        cliente = j.replace("\n", "")
+                        listaj.append(cliente)
+                    cpf_consulta = input('Digite o CPF do cliente para a consulta: ')
+                    for j in listaj:
+                        if(cpf_consulta == j.split(",")[2]):
+                            print("\n\nO preço do produto é: R$"+preco+"\nO valor total da venda é: R$"+str(float(quantidade_venda)*float(preco))+"\n")
+                            opcao = input("1 - Confirmar\t2 - Cancelar\n")
+```
+
+Assim como outros laços de repetição, esses são bem frequentes. Acima contém um exemplo presente no arquivo "Caixa.py".
+
+**subprogramas**
+
+## 🧾 | Aqui estão os Requisitos não-funcionais da aplicação:
 
 
 - **Requisitos de Produto Final**
@@ -55,150 +93,7 @@ Toda a aplicação foi desenvolvida em Python
 - **Requisitos Externos**
   	- A preservação de dados dos clientes está fixa na empresa, pois não lidaremos com a internet na aplicação e o único acesso será condicionado à chave de acesso do administrador.
 
-
-## 👨‍💻 Aqui está um exemplo de funcionalidade:
-
-```bash
-from decouple import config
-
-class Cliente:
-    def __init__ (self, nome, idade, cpf, numero_telefone, pontos):
-        self.nome = nome
-        self.idade = idade
-        self.cpf = cpf
-        self.numero_telefone = numero_telefone
-        self.pontos = pontos
-
-    def exibir(self):
-        print(f"\nNome: {self.nome}\tIdade: {self.idade}\nCPF: {self.cpf}\t\tNúmero de Telefone: {self.numero_telefone}\n\n")
-    
-    def cadastrar():
-        nome = input('Digite o nome do cliente: ')
-        idade = int(input('Digite a idade do cliente: '))
-        cpf = input('Digite o CPF do cliente: ')
-        numero_telefone = input('Digite o número de telefone: ')
-        resposta = input(f'Os dados do novo cliente são (digite SIM para confirmar e NAO para reiniciar): \nNome: {nome},\nIdade: {idade},\nCPF: {cpf},\nNúmero de Telefone:  {numero_telefone} \n')
-
-        if resposta == "SIM":
-            c = open(config("Cliente"), "a")
-            c.write("\n"+nome+","+str(idade)+","+cpf+","+numero_telefone+",0")
-            c.close()
-            print("Cliente cadastrado!")
-            
-        else:
-            Cliente.cadastrar()
-            
-    def consulta():
-        realized = False
-        lista = []
-        arquivo = open(config("Cliente"), "r")
-        c = arquivo.readlines()
-        for i in c:
-            cliente = i.replace("\n", "")
-            lista.append(cliente)
-        cpf_consulta = input('Digite o CPF do cliente para a consulta: ')
-        for i in lista:
-            if(cpf_consulta == i.split(",")[2]):
-                nome, idade, cpf, numero_telefone, pontos = i.split(",")
-                cliente = Cliente(nome=nome, idade=idade, cpf=cpf, numero_telefone=numero_telefone, pontos=pontos)
-                cliente.exibir()
-                realized = True
-        if realized != True:
-            print("Dados incorretos!")
-            opcao = input("1 - Inserir dados novamente\n")
-            if opcao == 1: Cliente.consulta()
-            realized 
-        arquivo.close()
-        
-    def deletar():
-        realized = False
-        arquivo = open(config("Cliente"), "r")
-        cpf_consulta = input('Digite o CPF do cliente para deletar: ')
-        c = arquivo.readlines()
-        for i in c:
-            if(cpf_consulta == i.split(",")[2]):
-                c.remove(i)
-                w = open(config("Cliente"), "w")
-                w.writelines(c)
-                print("Cliente deletado!\n")
-                realized = True
-        if realized != True:
-            print("Dados incorretos!")
-            opcao = input("1 - Inserir dados novamente\n")
-            if opcao == 1: Cliente.deletar()        
-        arquivo.close()
-    
-    def alterar():
-        realized = False
-        arquivo = open(config("Cliente"), "r")
-        cpf_consulta = input('Digite o CPF do cliente para alterar: ')
-        c = arquivo.readlines()
-        for i in c:
-            if(cpf_consulta == i.split(",")[2]):
-                nome = input('Digite o nome do cliente: ')
-                idade = int(input('Digite a idade do cliente: '))
-                numero_telefone = input('Digite o número de telefone: ')
-                pontos = i.split(",")[4]
-                resposta = input(f'Os dados do cliente são (digite SIM para confirmar e NAO para reiniciar): \nNome: {nome},\nIdade: {idade},\nCPF: {cpf_consulta},\nNúmero de Telefone:  {numero_telefone} \n')
-                if resposta == "SIM":
-                    c.remove(i)
-                    alterado = "\n"+nome+","+str(idade)+","+cpf_consulta+","+numero_telefone+","+pontos
-                    c.append(alterado)
-                    w = open(config("Cliente"), "w")
-                    w.writelines(c)
-                    print("Cliente alterado!\n\n")
-                    realized = True
-                else:
-                    Cliente.alterar()
-                
-        if realized != True:
-            print("Dados incorretos!")
-            opcao = input("1 - Inserir dados novamente\n")
-            if opcao == 1: Cliente.alterar()     
-        arquivo.close()        
-        
-    def pontuacao(cpf_consulta, valor):
-        valor = int(valor)
-        arquivo = open(config("Cliente"), "r")
-        c = arquivo.readlines()
-        for i in c:
-            if(cpf_consulta == i.split(",")[2]):
-                nome, idade, cpf, numero_telefone, pontos = i.split(",")
-                pontos = int(pontos) + (valor * 5)
-                c.remove(i)
-                alterado = "\n"+nome+","+str(idade)+","+cpf+","+numero_telefone+","+str(pontos)
-                c.append(alterado)
-                w = open(config("Cliente"), "w")
-                w.writelines(c)   
-        
-        arquivo = open(config("EstoqueProduto"), "r")
-        c = arquivo.readlines()
-        for i in c:
-            if(cpf_consulta == i.split(",")[2]):
-                nome, quantidade, preco, tipo, pontos = i.split(",")
-                pontos = int(pontos) + (valor * 5)
-                c.remove(i)
-                alterado = "\n"+nome+","+str(idade)+","+cpf+","+numero_telefone+","+str(pontos)
-                c.append(alterado)
-                w = open(config("EstoqueProduto"), "w")
-                w.writelines(c)   
-        arquivo.close()
-        
-    def melhorComprador():
-        melhorComprador = []
-        arquivo = open(config("Cliente"), "r")
-        c = arquivo.readlines()
-        melhorComprador = sorted(c, key=lambda x: x.split(",")[4], reverse=True)
-        arquivo.close()
-        print("\n\n\t\t\t  Melhores compradores\n")
-        for index, i in enumerate(melhorComprador):
-            print(str(index + 1)+"º - "+i.split(",")[0])
-        print("\n\n")
-```
-Esta é a nossa funcionalidade de Clientes, possibilita o cadastro, a exibição, a exclusão e a alteração dos dados dos clientes na plataforma.
-
-
-## ⛲ Fontes e Contatos
+## ⛲ | Fontes e Contatos
 
 [Mestres da Web]: [https://nodejs.org/](https://www.mestresdaweb.com.br/tecnologias/requisitos-funcionais-e-nao-funcionais-o-que-sao)
 [Logo de Python]: [https://www.typescriptlang.org/](https://logosmarcas.net/python-logo/)
