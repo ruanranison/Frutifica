@@ -41,6 +41,8 @@ class Main():
                 elif opcaor == 2: Cliente.melhorComprador()
                 elif opcaor == 3: Main.menu()
                 else: break
+            else:
+                break
                 
     def main():
         LOGIN={"login":"administrador","senha":"admin123"}

@@ -73,35 +73,40 @@ class EstoqueProduto:
         c = arquivo.readlines()
         nome_consulta = input('Digite o nome do produto para alterar: ')
         for i in c:
-            if(nome_consulta == i.split(",")[0]):
-                pontos = i.split(",")[4]
-                nome = input('Digite o nome do produto: ')
-                quantidade = int(input('Digite a quantidade do produto: '))
-                preco = float(input('Digite o valor do produto: R$ '))
-                tipo = input('Digite o tipo do produto: ')
-                resposta = input(f'Para confirmar os dados, digite SIM, para REINICIAR, digite NAO \nNome: {nome} \nQuantidade: {quantidade} \nPreço: R${preco} \nTipo: {tipo}\n')
-                if resposta == "SIM":
-                    alterado = "\n"+nome+","+str(quantidade)+","+str(preco)+","+tipo+","+pontos
-                    c.append(alterado)
-                    c.remove(i)
-                    w = open(config("EstoqueProduto"), "w")
-                    w.writelines(c)
-                    print("Produto alterado!\n\n")
-                    realized = True
-                else:
-                    EstoqueProduto.alterar()
-                
+            if(i != "\n"):
+                if(nome_consulta == i.split(",")[0]):
+                    pontos = i.split(",")[4]
+                    nome = input('Digite o nome do produto: ')
+                    quantidade = int(input('Digite a quantidade do produto: '))
+                    preco = float(input('Digite o valor do produto: R$ '))
+                    tipo = input('Digite o tipo do produto: ')
+                    resposta = input(f'Para confirmar os dados, digite SIM, para REINICIAR, digite NAO \nNome: {nome} \nQuantidade: {quantidade} \nPreço: R${preco} \nTipo: {tipo}\n')
+                    if resposta == "SIM":
+                        alterado = "\n"+nome+","+str(quantidade)+","+str(preco)+","+tipo+","+pontos
+                        c.append(alterado)
+                        c.remove(i)
+                        w = open(config("EstoqueProduto"), "w")
+                        w.writelines(c)
+                        arquivo.close()
+                        w.close()
+                        print("Produto alterado!\n\n")
+                        realized = True
+                    else:
+                        EstoqueProduto.alterar()      
+        
         if realized != True:
             print("Dados incorretos!")
-            opcao = input("1 - Inserir dados novamente\n")
+            opcao = int(input("1 - Inserir dados novamente\t2 - Sair\n"))
             if opcao == 1: EstoqueProduto.alterar() 
-        arquivo.close()
     
     def maisVendido():
         maisVendido = []
         arquivo = open(config("EstoqueProduto"), "r")
         c = arquivo.readlines()
-        maisVendido = sorted(c, key=lambda x: x.split(",")[4], reverse=True)
+        for i in c:
+            if(i != "\n"):
+                maisVendido.append(i)
+        maisVendido = sorted(maisVendido, key=lambda x: x.split(",")[4], reverse=True)
         arquivo.close()
         print("\n\n\t\t\t  Produtos mais vendidos\n")
         for index, i in enumerate(maisVendido):
